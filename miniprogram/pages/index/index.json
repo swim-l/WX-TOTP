@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "动态口令",
+  "usingComponents": {
+    "text-list": "/components/textList/textList"
+  }
+}

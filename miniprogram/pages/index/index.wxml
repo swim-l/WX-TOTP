@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="trang left-trang"></view>
+  <view class="trang right-trang"></view>
+  <view class="bg"></view>
+  <view class="nav">
+    <text class="iconfont icon-liebiao" bind:tap="more"></text>
+    <text class="iconfont icon-tianjia" bind:tap="add"></text>
+  </view>
+  <text-list list="{{ list }}" countdown="{{ countdown }}" progress="{{ progress }}" secretColor="{{secretColor}}"></text-list>
+</view>

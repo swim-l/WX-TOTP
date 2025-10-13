@@ -1,0 +1,1 @@
+"D:\Software\wechat-develop\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-6gd579m8f2fc68cb --n quickstartFunctions --r --project "D:\Work\wechat-totp" --report_first --report

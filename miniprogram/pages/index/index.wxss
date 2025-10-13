@@ -1,0 +1,57 @@
+/**index.wxss**/
+
+page {
+  background-color: #f6f6f6;
+  padding-bottom: 60rpx;
+}
+
+
+/* miniprogram/pages/index/index.wxss */
+.bg {
+  width: 100vw;
+  height: 300rpx;
+  position: fixed;
+  background: linear-gradient(#46abfe, #0d85ff);
+  z-index: 1;
+}
+
+.trang {
+  width: 170rpx;
+  height: 70rpx;
+  background-color: #f6f6f6;
+  position: fixed;
+  top: 270rpx;
+  z-index: 100;
+}
+
+.left-trang {
+  left: -30rpx;
+  transform: rotate(20deg);
+}
+
+.right-trang {
+  right: -30rpx;
+  transform: rotate(-20deg);
+}
+
+.nav {
+  display: flex;
+  width: 90vw;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  z-index: 99;
+  top: 50rpx;
+}
+
+.iconfont {
+  color: #ffffff;
+}
+
+.icon-tianjia {
+  font-size: 70rpx;
+}
+
+.icon-liebiao {
+  font-size: 70rpx;
+}

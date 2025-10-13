@@ -1,0 +1,7 @@
+<view>
+  <form bindsubmit="sendEmail">
+    <view class="page-section-title">建议：</view>
+    <textarea />
+    <button form-type="submit" type="primary"> 提交 </button>
+  </form>
+</view>

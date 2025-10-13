@@ -1,0 +1,17 @@
+/* pages/cusService/cusService.wxss */
+.page-section-title {
+  margin: 10px 5vw;
+}
+
+textarea {
+  width: 90vw;
+  height: 200px;
+  margin: 0 auto;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border: #cccccc 1px solid;
+}
+
+button {
+  margin-top: 16px;
+}

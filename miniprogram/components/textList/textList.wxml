@@ -1,0 +1,14 @@
+<view>
+  <scroll-view class="scroll">
+    <view class="scroll-item" wx:for="{{ list }}" wx:key="label">
+      <text class="user-info">
+        {{item.label}}({{item.issuer}})
+      </text>
+      <text class="iconfont icon-a-shenglvehao3x"></text>
+      <text class="secret" style="--secretColor:{{ secretColor }}">{{ item.secret }}</text>
+      <view class="big-circle" style="--progress:{{ progress }};--secretColor:{{ secretColor }}">
+        <view class="small-circle">{{ countdown }}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
