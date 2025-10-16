@@ -1,21 +1,19 @@
-// pages/cusService/cusService.js
+const util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    shareText: ""
-  },
-
-  sendEmail: function () {
 
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.navi
   },
 
   /**
@@ -65,5 +63,22 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  formSubmit(e) {
+    const { issuer, secret, label } = e.detail.value;
+    if (!secret || !label) {
+      wx.showToast({
+        title: '请填写完整信息',
+        icon: 'none'
+      });
+      return;
+    }
+    const tokenData = {
+      issuer: issuer,
+      secret: secret,
+      label: label,
+    };
+    util.addToken(tokenData,'man');
   }
 })

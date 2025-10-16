@@ -1,0 +1,33 @@
+<view class="container">
+  <form bindsubmit="formSubmit">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">账号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="label" placeholder="请输入账号" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">秘钥</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="secret" placeholder="请输入秘钥" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">备注</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="issuer" placeholder="请输入备注" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button style="width: 90vw;" class="weui-btn" type="primary" form-type="submit">提交</button>
+    </view>
+  </form>
+</view>

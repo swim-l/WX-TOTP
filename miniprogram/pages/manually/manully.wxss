@@ -1,0 +1,21 @@
+/* pages/manually/manully.wxss */
+.container {
+    padding: 20rpx;
+}
+
+.weui-cells {
+  width: 90vw;
+}
+
+.weui-label {
+    width: 140rpx;
+}
+
+.weui-input {
+    height: 2.55em;
+    min-height: 2.55em;
+}
+
+.weui-btn-area {
+    margin-top: 30px;
+}

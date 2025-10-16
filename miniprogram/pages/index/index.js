@@ -9,7 +9,7 @@ Page({
     secretColor: "#0276f8",
   },
 
-  onLoad: function () {
+  onLoad: function (option) {
     self = this;
     wx.getStorage({
       key: 'token',
@@ -24,6 +24,19 @@ Page({
       }
     })
     self.updateData()
+  },
+
+  onShow: function () {
+    const self = this;
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        self.setData({
+          rawList: res.data,
+          list: util.convertSec(res.data)
+        })
+      }
+    })
   },
 
   onUnload: function () {
@@ -53,26 +66,11 @@ Page({
       itemColor: '#000000',
       success: function (res) {
         if (res.tapIndex === 0) {
-          self.manualInput()
+          wx.navigateTo({
+            url: '../manually/manully',
+          })
         } else {
           self.scan()
-        }
-      }
-    })
-  },
-
-  //收到添加动态码 
-  manualInput: function () {
-    wx.showModal({
-      title: '手动添加动态码',
-      content: '',
-      complete: (res) => {
-        if (res.cancel) {
-          
-        }
-    
-        if (res.confirm) {
-          
         }
       }
     })
@@ -91,6 +89,7 @@ Page({
             confirmColor: '#ff9c10',
           })
         } else {
+          console.log("totpInfo--",totpInfo)
           util.addToken(totpInfo, "")
         }
       }

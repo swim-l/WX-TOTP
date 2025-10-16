@@ -45,7 +45,7 @@ const dateToString = (timestamp) => {
   }
   const date = new Date(timestamp);
   return date.getFullYear()
-    + '-' + String(date.getMonth() + 1).padStart(2, '0') 
+    + '-' + String(date.getMonth() + 1).padStart(2, '0')
     + '-' + String(date.getDate()).padStart(2, '0')
     + ' ' + String(date.getHours()).padStart(2, '0')
     + ':' + String(date.getMinutes()).padStart(2, '0')
@@ -61,15 +61,15 @@ const bindIndexScene = (scene) => {
   const effectTime = Date.now() - (10 * 60 + 3) * 1000;
   const db = wx.cloud.database();
   db.collection('qr_scene').doc(scene).get({
-    success: function(res) {
+    success: function (res) {
       if (res.data && res.data.createTime >= effectTime) {
         addToken(res.data, 'scan');
       } else {
-        wx.showToast({ title: '小程序码已失效', icon: 'error'  });
+        wx.showToast({ title: '小程序码已失效', icon: 'error' });
       }
     },
-    fail: function(res) {
-      wx.showToast({ title: '小程序码已失效', icon: 'error'  });
+    fail: function (res) {
+      wx.showToast({ title: '小程序码已失效', icon: 'error' });
     }
   });
 }
@@ -86,11 +86,22 @@ const addTokenStorage = (tokens, addItem) => {
     key: 'token',
     data: tokens,
     success: function (res) {
-      console.log(res)
+      wx.showToast({
+        title: "添加成功",
+        icon: "success"
+      })
     },
     fail: function (res) {
-      console.log(res)
+      wx.showToast({
+        title: "添加失败",
+        icon: "error"
+      })
     },
+    complete: function () {
+      wx.reLaunch({
+        url: '/pages/index/index?refresh',
+      })
+    }
   })
   uploadToken(tokens);
 }
@@ -118,18 +129,22 @@ function addToken(totpInfo, path) {
     },
     fail: function (res) {
       addTokenStorage([], totpInfo);
+    },
+    complete: function () {
+      if ("man" == path) {
+        wx.reLaunch({
+          url: '/pages/index/index?refresh',
+        })
+        wx.showToast({
+          title: "添加成功",
+          icon: "success"
+        })
+      } else if ("scan" == path) {
+        wx.reLaunch({
+          url: 'index?refresh=true',
+        })
+      }
     }
-    // complete: function () {
-    //   if ("man" == path) {
-    //     wx.navigateBack({
-    //       delta: 1,
-    //     })
-    //   } else if ("scan" == path) {
-    //     wx.reLaunch({
-    //       url: 'index?tip=add',
-    //     })
-    //   }
-    // }
   })
 }
 
@@ -143,12 +158,12 @@ function removeToken(token_id) {
     cancelColor: '#929292',
     confirmText: '确定',
     confirmColor: '#ff9c10',
-    success: function(res) {
+    success: function (res) {
       if (res.confirm) {
         // 确定删除
         wx.getStorage({
           key: 'token',
-          success: function(res) {
+          success: function (res) {
             token = res.data
             // 删除指定一位
             token.splice(token_id, 1)
@@ -156,16 +171,16 @@ function removeToken(token_id) {
             wx.setStorage({
               key: 'token',
               data: token,
-              success: function(res) {
+              success: function (res) {
                 console.log(res)
               },
-              fail: function(res) {
+              fail: function (res) {
                 console.log(res)
               }
             })
             uploadToken(token);
           },
-          complete: function(res) {
+          complete: function (res) {
             wx.reLaunch({
               url: 'index',
             })
@@ -178,7 +193,7 @@ function removeToken(token_id) {
   })
 }
 
-function uploadToken(token){
+function uploadToken(token) {
   const db = wx.cloud.database();
   const _ = db.command;
   const currentTime = new Date();
@@ -186,20 +201,21 @@ function uploadToken(token){
     data: {
       token,
       type: 'auto',
-      num:  token.length,
+      num: token.length,
       createTime: currentTime.getTime()
     }
   }).then(res => {
     if (res && res._id) {
       // 备份成功，删除旧数据
-      db.collection('otp').where({_id: _.neq(res._id)}).remove();
+      db.collection('otp').where({ _id: _.neq(res._id) }).remove();
     }
-  }).catch(_err =>{
+  }).catch(_err => {
     wx.showToast({
       title: '同步云端失败，请手动备份',
       icon: 'none',
       duration: 2000
     })
+    console.log("_err", _err)
   })
 }
 
