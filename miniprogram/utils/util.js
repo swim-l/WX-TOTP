@@ -116,7 +116,7 @@ function addToken(totpInfo, path) {
       content: 'KEY不合法',
       showCancel: false,
       confirmText: '返回',
-      confirmColor: '#ff9c10',
+      confirmColor: '#0d85ff',
     });
     return;
   }
@@ -228,7 +228,7 @@ function getDbData() {
           wx.showModal({
             title: '云端数据恢复',
             content: text,
-            confirmColor: '#ff9c10',
+            confirmColor: '#0d85ff',
             success(res) {
               if (res.confirm) {
                 wx.setStorage({
@@ -280,9 +280,8 @@ function convertSec(list) {
   var res = list.map(item => ({
     ...item,
     secret: TOTP.now(item.secret),
-    id : count++
+    id: count++
   }))
-  console.log("resqq",res)
   return res
 }
 

@@ -5,11 +5,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shareText: ""
+    contactInfo: "",
+    feedbackContent: ""
   },
 
   sendEmail: function () {
 
+  },
+
+  submitForm(e) {
+    const {
+      contactInfo,
+      feedbackContent
+    } = e.detail.value;
+    console.log('Contact Info:', contactInfo);
+    console.log('Feedback Content:', feedbackContent);
+
+    const db = wx.cloud.database();
+    db.collection("feedback").add({
+      data: {
+        contactInfo: contactInfo,
+        feedbackContent: feedbackContent
+      }
+    }).then(res => {
+      if (res && res._id) {
+        wx.reLaunch({
+          url: '../index/index',
+        })
+        wx.showToast({
+          title: '提交成功',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    }).catch(_err => {
+      wx.showToast({
+        title: '服务异常',
+        icon: 'none',
+        duration: 2000
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面加载

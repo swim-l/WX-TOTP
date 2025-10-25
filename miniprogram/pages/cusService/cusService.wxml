@@ -1,7 +1,27 @@
 <view>
-  <form bindsubmit="sendEmail">
-    <view class="page-section-title">建议：</view>
-    <textarea />
-    <button form-type="submit" type="primary"> 提交 </button>
-  </form>
+  <view class="container">
+    <form bindsubmit="submitForm">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系方式</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="contactInfo" placeholder="请输入您的联系方式（手机/邮箱/微信号）" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_textarea">
+          <view class="weui-cell__hd">
+            <view class="weui-label">反馈内容</view>
+          </view>
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" name="feedbackContent" placeholder="请输入您要反馈的问题或建议" style="height: 150px" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+        <button form-type="submit" type="primary"> 提交 </button>
+      </view>
+    </form>
+  </view>
 </view>
