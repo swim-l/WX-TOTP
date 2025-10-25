@@ -1,14 +1,16 @@
 <view>
-  <scroll-view class="scroll">
-    <view class="scroll-item" wx:for="{{ list }}" wx:key="label">
-      <text class="user-info">
-        {{item.label}}({{item.issuer}})
-      </text>
-      <text class="iconfont icon-a-shenglvehao3x"></text>
-      <text class="secret" style="--secretColor:{{ secretColor }}">{{ item.secret }}</text>
-      <view class="big-circle" style="--progress:{{ progress }};--secretColor:{{ secretColor }}">
-        <view class="small-circle">{{ countdown }}</view>
+    <scroll-view scroll-y class="list">
+      <view class="item-bg">
+        <view class="scroll-item" wx:for="{{ list }}" wx:key="id">
+        <text class="user-info">
+          {{item.label}}({{item.issuer}})
+        </text>
+        <text bind:tap="del" data-item="{{item}}" data-index="{{index}}" class="iconfont icon-a-shenglvehao3x"></text>
+        <text class="secret" style="--secretColor:{{ secretColor }}">{{ item.secret }}</text>
+        <view class="big-circle" style="--progress:{{ progress }};--secretColor:{{ secretColor }}">
+          <view class="small-circle">{{ countdown }}</view>
+        </view>
       </view>
-    </view>
-  </scroll-view>
+      </view>
+    </scroll-view>
 </view>

@@ -23,7 +23,6 @@ Page({
         self.getDbData()
       }
     })
-    self.updateData()
   },
 
   onShow: function () {
@@ -37,6 +36,7 @@ Page({
         })
       }
     })
+    self.updateData()
   },
 
   onUnload: function () {
@@ -49,7 +49,6 @@ Page({
       itemList: ["联系客服"],
       success: function (res) {
         if (res.tapIndex === 0) {
-          console.log("0000000000")
           wx.navigateTo({
             url: '../cusService/cusService',
           })
@@ -89,7 +88,6 @@ Page({
             confirmColor: '#ff9c10',
           })
         } else {
-          console.log("totpInfo--",totpInfo)
           util.addToken(totpInfo, "")
         }
       }
@@ -105,7 +103,6 @@ Page({
         if (res && res.data && res.data[0]) {
           const data = res.data[0];
           const token = data.token;
-          console.log("collection", token)
           if (data.num > 0) {
             const text = `发现${data.num}条数据，确定使用云端数据覆盖本地记录？`
             wx.showModal({
@@ -114,7 +111,6 @@ Page({
               confirmColor: '#ff9c10',
               success(res) {
                 if (res.confirm) {
-                  console.log("setStorage", token)
                   wx.setStorage({
                     key: 'token',
                     data: token,

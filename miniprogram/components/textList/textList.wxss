@@ -1,14 +1,22 @@
 /* components/textList/textList.wxss */
 @import "../../style/iconfont/iconfont.wxss";
 
-.scroll {
+.list {
   margin: 0 auto;
-  width: max-content;
+  width: 100vw;
+  height: 80vh;
   position: fixed;
   left: 0;
   right: 0;
   top: 240rpx;
   z-index: 200;
+}
+
+.item-bg {
+  width: max-content;
+  background-color: #f6f6f6;
+  margin-left: calc(50% - 40vw - 18px);
+  border-radius: 10rpx;
 }
 
 .scroll-item {

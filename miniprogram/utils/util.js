@@ -157,7 +157,7 @@ function removeToken(token_id) {
     cancelText: '取消',
     cancelColor: '#929292',
     confirmText: '确定',
-    confirmColor: '#ff9c10',
+    confirmColor: '#0d85ff',
     success: function (res) {
       if (res.confirm) {
         // 确定删除
@@ -172,11 +172,7 @@ function removeToken(token_id) {
               key: 'token',
               data: token,
               success: function (res) {
-                console.log(res)
               },
-              fail: function (res) {
-                console.log(res)
-              }
             })
             uploadToken(token);
           },
@@ -186,8 +182,6 @@ function removeToken(token_id) {
             })
           }
         })
-      } else if (res.cancel) {
-        console.log("cancelled")
       }
     }
   })
@@ -215,7 +209,6 @@ function uploadToken(token) {
       icon: 'none',
       duration: 2000
     })
-    console.log("_err", _err)
   })
 }
 
@@ -283,10 +276,13 @@ function getDbData() {
 **/
 function convertSec(list) {
 
+  var count = 0;
   var res = list.map(item => ({
     ...item,
-    secret: TOTP.now(item.secret)
+    secret: TOTP.now(item.secret),
+    id : count++
   }))
+  console.log("resqq",res)
   return res
 }
 

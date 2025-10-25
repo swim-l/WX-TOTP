@@ -1,3 +1,4 @@
+const util = require("../../utils/util");
 
 Component({
   properties: {
@@ -14,7 +15,20 @@ Component({
 
   },
 
-
+  methods: {
+    del: function (e) {
+      wx.showActionSheet({
+        itemList: ['删除'],
+        success: function (res) {
+          console.log("res.tabIndex",res.tapIndex)
+          if (res.tapIndex == 0) {
+            console.log("--")
+            util.removeToken(e.currentTarget.dataset.index)
+          }
+        }
+      })
+    }
+  }
 
 
 })
